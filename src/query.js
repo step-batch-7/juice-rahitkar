@@ -2,7 +2,7 @@ const lib = require("./processRecords.js");
 const fs = require("fs");
 
 const query = function(records, args) {
-  employeeId = +args[2];
+  const employeeId = +args[2];
   // console.log(employeeId);
   const matchedRecordAndCount = lib.getSpecificIdsRecords(records, employeeId);
   return matchedRecordAndCount;
