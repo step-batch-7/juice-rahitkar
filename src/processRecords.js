@@ -1,6 +1,7 @@
 const addNewTransaction = function(records, newTransaction) {
-  records.push(newTransaction);
-  return records;
+  const copyRecords = records.slice();
+  copyRecords.push(newTransaction);
+  return copyRecords;
 };
 
 const isIdPresent = function(EmployeeID) {

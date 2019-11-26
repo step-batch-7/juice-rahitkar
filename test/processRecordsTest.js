@@ -104,7 +104,6 @@ describe("isDatePresent", function() {
       quantity: "1",
       Date: date
     };
-    // console.log(date);
     const userDate = "2019-11-26";
     const actual = lib.isDatePresent(userDate)(transactionRecord);
     const expected = true;

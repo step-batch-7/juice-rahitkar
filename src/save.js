@@ -11,7 +11,6 @@ const save = function(records, args, date) {
 
   const addedRecord = lib.addNewTransaction(records, newTransaction);
   const newFileContent = JSON.stringify(addedRecord);
-  //console.log(newFileContent);
   fs.writeFileSync("./records.json", newFileContent, "utf8");
   return [newTransaction];
 };
