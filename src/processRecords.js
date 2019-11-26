@@ -1,33 +1,25 @@
 const fs = require("fs");
 
-const addNewTransaction = function(records, date, userCommands) {
-  const newTransaction = {
-    "Employee ID": userCommands[4],
-    Beverage: userCommands[2],
-    Quantity: userCommands[6],
-    Date: date
-  };
+const addNewTransaction = function(records, newTransaction) {
   records.push(newTransaction);
   return records;
 };
 
 const isIdPresent = function(EmployeeID) {
   return function(transactionRecord) {
-    return transactionRecord["Employee ID"] == EmployeeID;
+    return transactionRecord.empId == EmployeeID;
   };
 };
 
 const countTotalJuices = function(totalCount, transactionRecord) {
-  let QuantityOfTransaction = +transactionRecord["Quintity"];
+  let quantityOfTransaction = +transactionRecord["quantity"];
 
-  totalCount = totalCount + QuantityOfTransaction;
+  totalCount = totalCount + quantityOfTransaction;
   return totalCount;
 };
 
-const getSpecificIdsRecords = function(records, userCommands) {
-  EmployeeID = +userCommands[2];
-
-  const matchedTransactions = records.filter(isIdPresent(EmployeeID));
+const getSpecificIdsRecords = function(records, employeeId) {
+  const matchedTransactions = records.filter(isIdPresent(employeeId));
   const totalJuiceCount = matchedTransactions.reduce(countTotalJuices, 0);
 
   return [matchedTransactions, totalJuiceCount];
