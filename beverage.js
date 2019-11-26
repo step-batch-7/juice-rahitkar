@@ -2,7 +2,7 @@ const fs = require("fs");
 const chooseAndAct = require("./src/sudoMain.js").chooseAndAct;
 
 const main = function(args) {
-  const date = new Date();
+  const date = new Date().toJSON();
   const helpers = {
     exists: fs.existsSync,
     reader: fs.readFileSync,

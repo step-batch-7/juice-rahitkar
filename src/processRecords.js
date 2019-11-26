@@ -1,5 +1,3 @@
-const fs = require("fs");
-
 const addNewTransaction = function(records, newTransaction) {
   records.push(newTransaction);
   return records;
@@ -8,6 +6,13 @@ const addNewTransaction = function(records, newTransaction) {
 const isIdPresent = function(EmployeeID) {
   return function(transactionRecord) {
     return transactionRecord.empId == EmployeeID;
+  };
+};
+
+isDatePresent = function(userDate) {
+  return function(transactionRecord) {
+    const date = transactionRecord.Date;
+    return date.slice(0, 10) == userDate;
   };
 };
 
@@ -29,3 +34,4 @@ exports.addNewTransaction = addNewTransaction;
 exports.isIdPresent = isIdPresent;
 exports.countTotalJuices = countTotalJuices;
 exports.getSpecificIdsRecords = getSpecificIdsRecords;
+exports.isDatePresent = isDatePresent;
