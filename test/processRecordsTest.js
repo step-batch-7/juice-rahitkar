@@ -3,12 +3,12 @@ const lib = require("../src/processRecords.js");
 
 describe("addNewTransaction", function() {
   it("should return a list consisting one object made from given command line args", function() {
-    const date = new Date().toJSON();
+    const dat = new Date().toJSON();
     const actual = lib.addNewTransaction([], {
       empId: "11111",
       beverage: "Orange",
       quantity: "1",
-      Date: date
+      date: dat
     });
 
     const expected = [
@@ -16,7 +16,7 @@ describe("addNewTransaction", function() {
         empId: "11111",
         beverage: "Orange",
         quantity: "1",
-        Date: date
+        date: dat
       }
     ];
 
@@ -26,12 +26,12 @@ describe("addNewTransaction", function() {
 
 describe("isEmployeeIdPresent", function() {
   it("should return true for matched", function() {
-    const date = new Date().toJSON();
+    const dat = new Date().toJSON();
     const transactionRecord = {
       empId: 25333,
       beverage: "orenge",
       quantity: "1",
-      Date: date
+      date: dat
     };
     const actual = lib.isIdPresent(25333)(transactionRecord);
     const expected = true;
@@ -39,16 +39,16 @@ describe("isEmployeeIdPresent", function() {
   });
 });
 
-describe("countTotalJuices", function() {
+describe("countJuices", function() {
   it("should return added value of quantity of one transaction with total count", function() {
-    const date = new Date().toJSON();
+    const dat = new Date().toJSON();
     const transactionRecord = {
       empId: 25333,
       beverage: "orenge",
       quantity: "1",
-      Date: date
+      date: dat
     };
-    const actual = lib.countTotalJuices(0, transactionRecord);
+    const actual = lib.countJuices(0, transactionRecord);
     const expected = 1;
     assert.strictEqual(actual, expected);
   });
@@ -57,39 +57,36 @@ describe("countTotalJuices", function() {
 describe("getSpecificIdsRecords", function() {
   it("should return specific records from a list of data and total count of juices", function() {
     const queryRecord = 25333;
-    const date = new Date().toJSON();
+    const dat = new Date().toJSON();
     const transactionRecords = [
       {
         empId: 25333,
         beverage: "orenge",
         quantity: "1",
-        Date: date
+        date: dat
       },
       {
         empId: 25333,
         beverage: "apple",
         quantity: "3",
-        Date: date
+        date: dat
       }
     ];
 
     const actual = lib.getSpecificIdsRecords(transactionRecords, queryRecord);
     const expected = [
-      [
-        {
-          empId: 25333,
-          beverage: "orenge",
-          quantity: "1",
-          Date: date
-        },
-        {
-          empId: 25333,
-          beverage: "apple",
-          quantity: "3",
-          Date: date
-        }
-      ],
-      4
+      {
+        empId: 25333,
+        beverage: "orenge",
+        quantity: "1",
+        date: dat
+      },
+      {
+        empId: 25333,
+        beverage: "apple",
+        quantity: "3",
+        date: dat
+      }
     ];
     assert.deepStrictEqual(actual, expected);
   });
@@ -97,14 +94,14 @@ describe("getSpecificIdsRecords", function() {
 
 describe("isDatePresent", function() {
   it("should return true for matched date", function() {
-    const date = new Date().toJSON();
+    const dat = new Date().toJSON();
     const transactionRecord = {
       empId: 25333,
       beverage: "orenge",
       quantity: "1",
-      Date: date
+      date: dat
     };
-    const userDate = "2019-11-26";
+    const userDate = dat.slice(0, 10);
     const actual = lib.isDatePresent(userDate)(transactionRecord);
     const expected = true;
     assert.strictEqual(actual, expected);

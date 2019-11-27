@@ -12,27 +12,32 @@ const isIdPresent = function(EmployeeID) {
 
 isDatePresent = function(userDate) {
   return function(transactionRecord) {
-    const date = transactionRecord.Date;
-    return date.slice(0, 10) == userDate;
+    const dat = transactionRecord.date;
+    return dat.slice(0, 10) == userDate;
   };
 };
 
-const countTotalJuices = function(totalCount, transactionRecord) {
+const countJuices = function(count, transactionRecord) {
   let quantityOfTransaction = +transactionRecord["quantity"];
 
-  totalCount = totalCount + quantityOfTransaction;
+  count = count + quantityOfTransaction;
+  return count;
+};
+
+const countTotalJuices = function(matchedTransactions) {
+  const totalCount = matchedTransactions.reduce(countJuices, 0);
   return totalCount;
 };
 
 const getSpecificIdsRecords = function(records, employeeId) {
   const matchedTransactions = records.filter(isIdPresent(employeeId));
-  const totalJuiceCount = matchedTransactions.reduce(countTotalJuices, 0);
-
-  return [matchedTransactions, totalJuiceCount];
+  // const totalJuiceCount = countTotalJuices(matchedTransactions);
+  return matchedTransactions;
 };
 
 exports.addNewTransaction = addNewTransaction;
 exports.isIdPresent = isIdPresent;
-exports.countTotalJuices = countTotalJuices;
+exports.countJuices = countJuices;
 exports.getSpecificIdsRecords = getSpecificIdsRecords;
 exports.isDatePresent = isDatePresent;
+exports.countTotalJuices = countTotalJuices;

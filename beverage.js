@@ -8,7 +8,8 @@ const main = function(args) {
     reader: fs.readFileSync,
     format: "utf8",
     path: "./records.json",
-    parser: JSON.parse
+    parser: JSON.parse,
+    writer: fs.writeFileSync
   };
   console.log(chooseAndAct(args, date, helper));
 };
