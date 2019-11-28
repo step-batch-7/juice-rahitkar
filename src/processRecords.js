@@ -29,15 +29,22 @@ const countTotalJuices = function(matchedTransactions) {
   return totalCount;
 };
 
-const getSpecificIdsRecords = function(records, employeeId) {
-  const matchedTransactions = records.filter(isIdPresent(employeeId));
-  // const totalJuiceCount = countTotalJuices(matchedTransactions);
-  return matchedTransactions;
+const getSpecificIdsRecords = function(records, dataToBeMatched) {
+  const matchedIdTransactions = records.filter(isIdPresent(dataToBeMatched));
+  return matchedIdTransactions;
+};
+
+const getSpecificDatesRecords = function(records, dataToBeMatched) {
+  const matchedDateTransactions = records.filter(
+    isDatePresent(dataToBeMatched)
+  );
+  return matchedDateTransactions;
 };
 
 exports.addNewTransaction = addNewTransaction;
 exports.isIdPresent = isIdPresent;
+exports.isDatePresent = isDatePresent;
 exports.countJuices = countJuices;
 exports.getSpecificIdsRecords = getSpecificIdsRecords;
-exports.isDatePresent = isDatePresent;
+exports.getSpecificDatesRecords = getSpecificDatesRecords;
 exports.countTotalJuices = countTotalJuices;

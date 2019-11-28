@@ -7,6 +7,7 @@ const write = require("./write.js").write;
 const create = require("./createMessage.js");
 
 const performSaveAction = function(records, args, date, writer, path, format) {
+  // const saveData = args.slice(1);
   const allRecords = save(records, args, date);
   const filecontent = JSON.stringify(allRecords);
   write(writer, path, filecontent, format);
@@ -24,8 +25,8 @@ const performQueryAction = function(records, args) {
   return create.queryMessage(queryResult);
 };
 
-const chooseAndAct = function(args, date, helper) {
-  const action = args[0];
+const chooseTheAction = function(args, date, helper) {
+  const action = args[args.lastIndexOf("--save")];
   const exists = helper["exists"];
   const reader = helper["reader"];
   const path = helper["path"];
@@ -40,4 +41,4 @@ const chooseAndAct = function(args, date, helper) {
   return performQueryAction(records, args);
 };
 
-exports.chooseAndAct = chooseAndAct;
+exports.chooseTheAction = chooseTheAction;

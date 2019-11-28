@@ -13,9 +13,8 @@ const createSaveMessage = function(records) {
 
 const createQueryMessage = function(queryResult) {
   const matchedRecords = queryResult["matchedRecords"];
-  let message = "";
+  let message = "Employee ID,Beverage,Quantity,Date" + "\n";
   for (let indx = 0; indx < matchedRecords.length; indx++) {
-    message = "Employee ID,Beverage,Quantity,Date" + "\n";
     message = message + matchedRecords[indx]["empId"] + " ";
     message = message + matchedRecords[indx]["beverage"] + " ";
     message = message + matchedRecords[indx]["quantity"] + " ";

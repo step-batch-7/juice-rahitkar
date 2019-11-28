@@ -1,4 +1,4 @@
-const chooseAndAct = require("../src/chooseAndAct.js").chooseAndAct;
+const chooseTheAction = require("../src/chooseTheAction.js").chooseTheAction;
 const assert = require("assert");
 const fs = require("fs");
 
@@ -46,7 +46,7 @@ describe("chooseAndAct", function() {
       writer: mokWriter
     };
 
-    const actual = chooseAndAct(args, dat, helper);
+    const actual = chooseTheAction(args, dat, helper);
     const expected =
       "Transaction Recorded:" +
       "\n" +
@@ -99,7 +99,7 @@ describe("chooseAndAct", function() {
       writer: mokWriter
     };
 
-    const actual = chooseAndAct(args, dat, helper);
+    const actual = chooseTheAction(args, dat, helper);
     const expected =
       "Employee ID,Beverage,Quantity,Date\n1111 Apple 4 2019-11-26T17:29:48.737Z\nTotal :4";
 

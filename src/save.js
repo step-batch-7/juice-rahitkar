@@ -3,9 +3,9 @@ const fs = require("fs");
 
 const save = function(records, args, dat) {
   const newTransaction = {
-    empId: args[4],
-    beverage: args[2],
-    quantity: args[6],
+    empId: args[args.lastIndexOf("--empId") + 1],
+    beverage: args[args.lastIndexOf("--beverage") + 1],
+    quantity: args[args.lastIndexOf("--qty") + 1],
     date: dat
   };
 

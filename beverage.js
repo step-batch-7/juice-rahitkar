@@ -1,5 +1,5 @@
 const fs = require("fs");
-const chooseAndAct = require("./src/chooseAndAct.js").chooseAndAct;
+const chooseTheAction = require("./src/chooseTheAction.js").chooseTheAction;
 
 const main = function(args) {
   const date = new Date().toJSON();
@@ -11,7 +11,7 @@ const main = function(args) {
     parser: JSON.parse,
     writer: fs.writeFileSync
   };
-  console.log(chooseAndAct(args, date, helper));
+  console.log(chooseTheAction(args, date, helper));
 };
 
 main(process.argv.slice(2));
