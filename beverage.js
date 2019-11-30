@@ -2,7 +2,7 @@ const fs = require("fs");
 const chooseTheAction = require("./src/chooseTheAction.js").chooseTheAction;
 
 const main = function(args) {
-  const date = new Date().toJSON();
+  const date = new Date();
   const helper = {
     exists: fs.existsSync,
     reader: fs.readFileSync,

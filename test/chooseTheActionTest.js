@@ -1,8 +1,7 @@
 const chooseTheAction = require("../src/chooseTheAction.js").chooseTheAction;
 const assert = require("assert");
-const fs = require("fs");
 
-describe("chooseAndAct", function() {
+describe("chooseTheAction", function() {
   it("should return a message in required format for given command save ", function() {
     const args = [
       "--save",
@@ -13,9 +12,7 @@ describe("chooseAndAct", function() {
       "--qty",
       "4"
     ];
-    let dat = new Date();
-    dat = dat.toJSON();
-
+    let date = new Date();
     const mokExists = function(path) {
       assert.strictEqual(path, "./right path");
       return true;
@@ -46,21 +43,21 @@ describe("chooseAndAct", function() {
       writer: mokWriter
     };
 
-    const actual = chooseTheAction(args, dat, helper);
+    const actual = chooseTheAction(args, date, helper);
     const expected =
       "Transaction Recorded:" +
       "\n" +
       "Employee ID,Beverage,Quantity,Date" +
       "\n" +
       "1111 Apple 4 " +
-      dat;
+      date.toJSON();
     assert.strictEqual(actual, expected);
   });
 
   it("should return a massage contening all matched  records for given command query ", function() {
     const args = ["--query", "--empId", "1111"];
-    let dat = new Date();
-    dat = dat.toJSON();
+    let date = new Date();
+    date = date.toJSON();
 
     const mokExists = function(path) {
       assert.strictEqual(path, "./right path");
@@ -99,7 +96,7 @@ describe("chooseAndAct", function() {
       writer: mokWriter
     };
 
-    const actual = chooseTheAction(args, dat, helper);
+    const actual = chooseTheAction(args, date, helper);
     const expected =
       "Employee ID,Beverage,Quantity,Date\n1111 Apple 4 2019-11-26T17:29:48.737Z\nTotal :4";
 

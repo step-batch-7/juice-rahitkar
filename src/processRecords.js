@@ -10,10 +10,17 @@ const isIdPresent = function(EmployeeID) {
   };
 };
 
-isDatePresent = function(userDate) {
+const isDatePresent = function(userDate) {
   return function(transactionRecord) {
-    const dat = transactionRecord.date;
-    return dat.slice(0, 10) == userDate;
+    let date = transactionRecord.date;
+    date = date.toJSON();
+    return date.slice(0, 10) == userDate;
+  };
+};
+
+const isBeveragePresent = function(userBeverage) {
+  return function(transactionRecord) {
+    return transactionRecord.beverage == userBeverage;
   };
 };
 
@@ -41,10 +48,19 @@ const getSpecificDatesRecords = function(records, dataToBeMatched) {
   return matchedDateTransactions;
 };
 
+const getSpecificBeveragesRecords = function(records, dataToBeMatched) {
+  const matchedBeverageTransactions = records.filter(
+    isBeveragePresent(dataToBeMatched)
+  );
+  return matchedBeverageTransactions;
+};
+
 exports.addNewTransaction = addNewTransaction;
 exports.isIdPresent = isIdPresent;
 exports.isDatePresent = isDatePresent;
+exports.isBeveragePresent = isBeveragePresent;
 exports.countJuices = countJuices;
 exports.getSpecificIdsRecords = getSpecificIdsRecords;
 exports.getSpecificDatesRecords = getSpecificDatesRecords;
-exports.countTotalJuices = countTotalJuices;
+exports.getSpecificBeveragesRecords = getSpecificBeveragesRecords;
+exports.countTotalJuices = countTotalJuices; //

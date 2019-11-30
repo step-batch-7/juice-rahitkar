@@ -7,7 +7,6 @@ const write = require("./write.js").write;
 const create = require("./createMessage.js");
 
 const performSaveAction = function(records, args, date, writer, path, format) {
-  // const saveData = args.slice(1);
   const allRecords = save(records, args, date);
   const filecontent = JSON.stringify(allRecords);
   write(writer, path, filecontent, format);
@@ -25,16 +24,22 @@ const performQueryAction = function(records, args) {
   return create.queryMessage(queryResult);
 };
 
-const chooseTheAction = function(args, date, helper) {
-  const action = args[args.lastIndexOf("--save")];
-  const exists = helper["exists"];
-  const reader = helper["reader"];
-  const path = helper["path"];
-  const format = helper["format"];
-  const parser = helper["parser"];
-  const writer = helper["writer"];
+const formatRecords = function(record) {
+  record.date = new Date(record.date);
+  return record;
+};
 
-  const records = getRecords(exists, reader, path, format, parser);
+const chooseTheAction = function(args, date, helper) {
+  const action = args[0];
+  const exists = helper.exists;
+  const reader = helper.reader;
+  const path = helper.path;
+  const format = helper.format;
+  const parser = helper.parser;
+  const writer = helper.writer;
+
+  let records = getRecords(exists, reader, path, format, parser);
+  records = records.map(formatRecords);
   if (action == "--save") {
     return performSaveAction(records, args, date, writer, path, format);
   }
