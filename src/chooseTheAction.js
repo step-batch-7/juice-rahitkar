@@ -1,13 +1,20 @@
-const fs = require("fs");
 const getRecords = require("./getRecords").getRecords;
 const save = require("./save").save;
 const query = require("./query").query;
 const count = require("./processRecords.js").countTotalJuices;
 const write = require("./write.js").write;
 const create = require("./createMessage.js");
+const parseSaveCommand = require("./parse").parseSaveCommand;
+const parseQueryCommand = require("./parse").parseQueryCommand;
 
-const performSaveAction = function(records, args, date, writer, path, format) {
-  const allRecords = save(records, args, date);
+const performSaveAction = function(
+  records,
+  recordToBeSaved,
+  writer,
+  path,
+  format
+) {
+  const allRecords = save(records, recordToBeSaved);
   const filecontent = JSON.stringify(allRecords);
   write(writer, path, filecontent, format);
   const newTransaction = allRecords.slice(-1);
@@ -41,9 +48,11 @@ const chooseTheAction = function(args, date, helper) {
   let records = getRecords(exists, reader, path, format, parser);
   records = records.map(formatRecords);
   if (action == "--save") {
-    return performSaveAction(records, args, date, writer, path, format);
+    const recordToBeSaved = parseSaveCommand(args, date);
+    return performSaveAction(records, recordToBeSaved, writer, path, format);
   }
-  return performQueryAction(records, args);
+  const recordToBeSearched = parseQueryCommand(args);
+  return performQueryAction(records, recordToBeSearched);
 };
 
 exports.chooseTheAction = chooseTheAction;

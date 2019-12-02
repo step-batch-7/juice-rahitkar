@@ -17,7 +17,7 @@ describe("queryTest", function() {
         date: "2019-11-26T17:29:48.737Z"
       }
     ];
-    const args = ["--query", "--empId", "1111"];
+    const args = { empId: 1111, date: undefined, beverage: undefined };
     const actual = query(records, args);
     const expected = [
       {
@@ -47,7 +47,7 @@ describe("queryTest", function() {
       }
     ];
     const userDate = date.toJSON().slice(0, 10);
-    const args = ["--query", "--date", userDate];
+    const args = { empId: undefined, beverage: undefined, date: userDate };
     const actual = query(records, args);
     const expected = [
       {
@@ -81,7 +81,7 @@ describe("queryTest", function() {
         date: "2019-11-26T17:29:48.737Z"
       }
     ];
-    const args = ["--query", "--beverage", "Banana"];
+    const args = { empId: undefined, date: undefined, beverage: "Banana" };
     const actual = query(records, args);
     const expected = [
       {
