@@ -1,3 +1,5 @@
 node_modules
 test/sudomainTest.js
 records.json
+newRecord.json
+failures.txt

@@ -1,0 +1,3 @@
+(export AnnaJuiceCenterTransactionsPath="missingFile.json" ; node beverage.js --query --empId 11111)
+Employee ID,Beverage,Quantity,Date
+Total: 0 Juices

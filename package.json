@@ -4,7 +4,9 @@
   "description": "Beverage App for Anna Juice Ltd",
   "main": "beverage.js",
   "scripts": {
-    "test": "nyc mocha"
+    "test": "nyc mocha",
+    "appTest" : "./runAppTest.sh appTest/*.test",
+    "allTest": "nyc mocha ; ./runAppTest.sh appTest/*.test"
   },
   "author": "rahit",
   "license": "ISC",

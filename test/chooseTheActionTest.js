@@ -44,13 +44,7 @@ describe("chooseTheAction", function() {
     };
 
     const actual = chooseTheAction(args, date, helper);
-    const expected =
-      "Transaction Recorded:" +
-      "\n" +
-      "Employee ID,Beverage,Quantity,Date" +
-      "\n" +
-      "1111 Apple 4 " +
-      date.toJSON();
+    const expected = `Transaction Recorded:\nEmployee ID,Beverage,Quantity,Date\n1111,Apple,4,${date.toJSON()}`;
     assert.strictEqual(actual, expected);
   });
 
@@ -97,9 +91,8 @@ describe("chooseTheAction", function() {
     };
 
     const actual = chooseTheAction(args, date, helper);
-    const expected =
-      "Employee ID,Beverage,Quantity,Date\n1111 Apple 4 2019-11-26T17:29:48.737Z\nTotal :4";
+    const expected = `Employee ID,Beverage,Quantity,Date\n1111,Apple,4,2019-11-26T17:29:48.737Z\nTotal: 4 Juices`;
 
-    assert.deepStrictEqual(actual, expected);
+    assert.strictEqual(actual, expected);
   });
 });
