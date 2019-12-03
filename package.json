@@ -4,9 +4,10 @@
   "description": "Beverage App for Anna Juice Ltd",
   "main": "beverage.js",
   "scripts": {
+    "start": "node beverage.js",
     "test": "nyc mocha",
-    "appTest" : "./runAppTest.sh appTest/*.test",
-    "allTest": "nyc mocha ; ./runAppTest.sh appTest/*.test"
+    "appTest": "zsh ./runAppTest.sh appTest/*.test",
+    "allTest": "nyc mocha ; zsh ./runAppTest.sh appTest/*.test"
   },
   "author": "rahit",
   "license": "ISC",
@@ -14,8 +15,5 @@
     "mocha": "^6.2.2",
     "nyc": "^14.1.1"
   },
-  "dependencies": {
-    "chai": "^4.2.0",
-    "chalk": "^3.0.0"
-  }
+  "dependencies": {}
 }

@@ -3,3 +3,4 @@ test/sudomainTest.js
 records.json
 newRecord.json
 failures.txt
+.nyc_output
