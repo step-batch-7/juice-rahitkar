@@ -1,4 +1,4 @@
-const chooseTheAction = require("../src/chooseTheAction.js").chooseTheAction;
+const performAction = require("../src/chooseTheAction.js").performAction;
 const assert = require("assert");
 
 describe("chooseTheAction", function() {
@@ -43,7 +43,7 @@ describe("chooseTheAction", function() {
       writer: mokWriter
     };
 
-    const actual = chooseTheAction(args, date, helper);
+    const actual = performAction(args, date, helper);
     const expected = `Transaction Recorded:\nEmployee ID,Beverage,Quantity,Date\n1111,Apple,4,${date.toJSON()}`;
     assert.strictEqual(actual, expected);
   });
@@ -90,7 +90,7 @@ describe("chooseTheAction", function() {
       writer: mokWriter
     };
 
-    const actual = chooseTheAction(args, date, helper);
+    const actual = performAction(args, date, helper);
     const expected = `Employee ID,Beverage,Quantity,Date\n1111,Apple,4,2019-11-26T17:29:48.737Z\nTotal: 4 Juices`;
 
     assert.strictEqual(actual, expected);
