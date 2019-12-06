@@ -1,11 +1,11 @@
 const parseSaveCommand = (UserCommand, date) => {
-  const recordTobeSaved = {
+  const recordToBeSaved = {
     empId: +UserCommand[UserCommand.lastIndexOf("--empId") + 1],
     beverage: UserCommand[UserCommand.lastIndexOf("--beverage") + 1],
     quantity: UserCommand[UserCommand.lastIndexOf("--qty") + 1],
     date: date
   };
-  return recordTobeSaved;
+  return recordToBeSaved;
 };
 
 const parseQueryCommand = UserCommand => {

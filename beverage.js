@@ -1,5 +1,5 @@
 const fs = require("fs");
-const chooseTheAction = require("./src/chooseTheAction.js").chooseTheAction;
+const performAction = require("./src/chooseTheAction.js").performAction;
 const configPath = require("./src/config").configPath;
 const configDate = require("./src/config").configDate;
 
@@ -13,7 +13,8 @@ const main = function(args) {
     parser: JSON.parse,
     writer: fs.writeFileSync
   };
-  console.log(chooseTheAction(args, date, helper));
+  const message = performAction(args, date, helper);
+  console.log(message);
 };
 
 main(process.argv.slice(2));

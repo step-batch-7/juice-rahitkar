@@ -1,4 +1,4 @@
-const getRecords = require("./getRecords").getRecords;
+const getTransactionRecords = require("./getRecords").getRecords;
 const save = require("./save").save;
 const query = require("./query").query;
 const count = require("./processRecords.js").countTotalJuices;
@@ -15,10 +15,10 @@ const performSaveAction = function(
   format
 ) {
   const allRecords = save(records, recordToBeSaved);
-  const filecontent = JSON.stringify(allRecords);
-  write(writer, path, filecontent, format);
+  const fileContent = JSON.stringify(allRecords);
+  write(writer, path, fileContent, format);
   const newTransaction = allRecords.slice(-1);
-  return create.saveMessage(newTransaction);
+  return newTransaction;
 };
 
 const performQueryAction = function(records, args) {
@@ -28,15 +28,15 @@ const performQueryAction = function(records, args) {
     matchedRecords: matchedTransactions,
     total: totalJuiceCount
   };
-  return create.queryMessage(queryResult);
+  return queryResult;
 };
 
-const formatRecords = function(record) {
-  record.date = new Date(record.date);
-  return record;
+const formatRecords = function(records) {
+  records.date = new Date(records.date);
+  return records;
 };
 
-const chooseTheAction = function(args, date, helper) {
+const performAction = function(args, date, helper) {
   const action = args[0];
   const exists = helper.exists;
   const reader = helper.reader;
@@ -45,14 +45,25 @@ const chooseTheAction = function(args, date, helper) {
   const parser = helper.parser;
   const writer = helper.writer;
 
-  let records = getRecords(exists, reader, path, format, parser);
+  let records = getTransactionRecords(exists, reader, path, format, parser);
   records = records.map(formatRecords);
   if (action == "--save") {
     const recordToBeSaved = parseSaveCommand(args, date);
-    return performSaveAction(records, recordToBeSaved, writer, path, format);
+    const saveResult = performSaveAction(
+      records,
+      recordToBeSaved,
+      writer,
+      path,
+      format
+    );
+    const saveMessage = create.saveMessage(saveResult);
+    return saveMessage;
   }
+
   const recordToBeSearched = parseQueryCommand(args);
-  return performQueryAction(records, recordToBeSearched);
+  const queryResult = performQueryAction(records, recordToBeSearched);
+  const queryMessage = create.queryMessage(queryResult);
+  return queryMessage;
 };
 
-exports.chooseTheAction = chooseTheAction;
+exports.performAction = performAction;
