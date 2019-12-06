@@ -48,7 +48,7 @@ describe("chooseTheAction", function() {
     assert.strictEqual(actual, expected);
   });
 
-  it("should return a massage contening all matched  records for given command query ", function() {
+  it("should return a massage contending all matched  records for given command query ", function() {
     const args = ["--query", "--empId", "1111"];
     let date = new Date();
     date = date.toJSON();
