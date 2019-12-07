@@ -1,7 +1,7 @@
-const performAction = require("../src/chooseTheAction.js").performAction;
+const performAction = require("../src/performAction").performAction;
 const assert = require("assert");
 
-describe("chooseTheAction", function() {
+describe("performAction", function() {
   it("should return a message in required format for given command save ", function() {
     const args = [
       "--save",
@@ -48,7 +48,7 @@ describe("chooseTheAction", function() {
     assert.strictEqual(actual, expected);
   });
 
-  it("should return a massage contending all matched  records for given command query ", function() {
+  it("should return a massage having all matched  records for given command query ", function() {
     const args = ["--query", "--empId", "1111"];
     let date = new Date();
     date = date.toJSON();

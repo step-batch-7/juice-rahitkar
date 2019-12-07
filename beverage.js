@@ -1,5 +1,5 @@
 const fs = require("fs");
-const performAction = require("./src/chooseTheAction.js").performAction;
+const performAction = require("./src/performAction").performAction;
 const configPath = require("./src/config").configPath;
 const configDate = require("./src/config").configDate;
 
